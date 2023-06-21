@@ -11,6 +11,7 @@ export class BaseApiService {
         this.API_END_POINTS = {
             LOGIN_REQUEST: this.baseApiUrl + '/auth/login',
             REGISTER_REQUEST: this.baseApiUrl + '/auth/register',
+            FORGET_PASSWORD_REQUEST: this.baseApiUrl + '/auth/forget-password',
             REFRESH_TOKEN_REQUEST: this.baseApiUrl + '/auth/refresh-token'
         };
     }

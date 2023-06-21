@@ -21,6 +21,9 @@ export class AuthComponent implements OnInit {
                     case '/auth/register':
                         this.currentPage = 'Đăng kí';
                         break;
+                    case '/auth/forget-password':
+                        this.currentPage = 'Quên mật khẩu';
+                        break;
                 }
             }
         })

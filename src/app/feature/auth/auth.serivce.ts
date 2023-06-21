@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Observable, catchError, throwError } from "rxjs";
 import { ErrorApiResponse } from "src/app/core/schema/error.schema";
-import { RegisterRequestDto } from "src/app/data/schema/auth.schema";
+import { ForgetPasswordRequestDto, RegisterRequestDto } from "src/app/data/schema/auth.schema";
 import { AuthApiService } from "src/app/data/services/auth-api.service";
 
 @Injectable()
-export class AuthHandlerService {
+export class AuthService {
     constructor(private authApiService: AuthApiService) { }
 
     register(
@@ -22,6 +22,22 @@ export class AuthHandlerService {
         };
 
         return this.authApiService.register(data)
+                                .pipe(
+                                    catchError<any, Observable<ErrorApiResponse>>((errorResponse): Observable<ErrorApiResponse> => {
+                                        return throwError({
+                                            error: errorResponse.error.error,
+                                            detail: errorResponse.error.detail
+                                        });
+                                    })
+                                );
+    }
+
+    forgetPassword(usernameOrEmail: string) {
+        const data: ForgetPasswordRequestDto = {
+            name: usernameOrEmail
+        };
+
+        return this.authApiService.requestForgetPassword(data)
                                 .pipe(
                                     catchError<any, Observable<ErrorApiResponse>>((errorResponse): Observable<ErrorApiResponse> => {
                                         return throwError({

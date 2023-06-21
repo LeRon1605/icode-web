@@ -30,3 +30,10 @@ export interface RegisterRequestDto {
 export interface RegisterResponseDto {
     
 }
+
+export interface ForgetPasswordRequestDto {
+    name: string;
+}
+
+export interface ForgetPasswordResponseDto {
+}

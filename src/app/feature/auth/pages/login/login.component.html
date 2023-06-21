@@ -7,7 +7,7 @@
             <input 
                 type="email" 
                 class="form-control" 
-                [class]="{'is-invalid': loginForm.controls['usernameOrEmail'].hasError('required') && loginForm.controls['usernameOrEmail'].touched}" 
+                [class]="{'is-invalid': loginForm.controls['usernameOrEmail'].invalid && loginForm.controls['usernameOrEmail'].touched}" 
                 placeholder="Tên đăng nhập hoặc địa chỉ email" 
                 formControlName="usernameOrEmail"
             >
@@ -17,14 +17,14 @@
             <input 
                 type="password" 
                 class="form-control" 
-                [class]="{'is-invalid': loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched}"
+                [class]="{'is-invalid': loginForm.controls['password'].invalid && loginForm.controls['password'].touched}"
                 placeholder="Mật khẩu" 
                 formControlName="password"
             >
             <div class="form-text text-danger" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Mật khẩu không được để trống.</div>
         </div>
         <div class="mb-2 d-flex flex-column">
-            <a href="" class="text-decoration-none">Quên mật khẩu</a>
+            <a class="text-decoration-none" [routerLink]="['/auth/forget-password']">Quên mật khẩu</a>
             <span>Không có tài khoản? <a class="text-decoration-none" [routerLink]="['/auth/register']">Đăng kí ngay</a></span>
         </div>
         <button type="submit" class="btn btn-primary col-12" [disabled]="!loginForm.valid">Đăng nhập</button>

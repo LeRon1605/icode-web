@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { UserInfo } from "src/app/core/schema/user.schema";
-import { AuthService } from "src/app/core/services/auth.service";
+import { SecurityService } from "src/app/core/services/security.service";
 import { UserStorageService } from "src/app/core/services/user-storage.service";
 
 @Component({
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     constructor(
         private userStorageService: UserStorageService, 
-        private authService: AuthService
+        private securityService: SecurityService
     ) {
         this.isAuthenticated = false;
         this.currentUser = null;
@@ -31,13 +31,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
             this.currentUser = user;
         });
 
-        this.isAuthenticatedSubscription = this.authService.authenticated.subscribe(authenticated => {
+        this.isAuthenticatedSubscription = this.securityService.authenticated.subscribe(authenticated => {
             this.isAuthenticated = authenticated;
         });
     }
 
     onLogoutClicked() {
-        this.authService.logout();
+        this.securityService.logout();
     }
 
     ngOnDestroy(): void {

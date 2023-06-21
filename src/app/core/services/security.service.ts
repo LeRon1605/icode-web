@@ -7,7 +7,7 @@ import { TokenStorageService } from "./token-storage.service";
 import { UserStorageService } from "./user-storage.service";
 
 @Injectable({ providedIn: 'root' })
-export class AuthService {
+export class SecurityService {
     public authenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     constructor(

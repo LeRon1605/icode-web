@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { CompareValidator } from "src/app/shared/validators/compare.validator";
-import { AuthHandlerService } from "../../auth-handler.serivce";
+import { AuthService } from "../../auth.serivce";
 import { ALERT_TYPE } from "src/app/core/constants/alert-type.constant";
 import { AlertType } from "src/app/shared/components/alert/alert.type";
 
@@ -18,7 +18,7 @@ export class RegisterComponent {
     };
     public registerForm: FormGroup;
 
-    constructor(private authHanlderService: AuthHandlerService) {
+    constructor(private authService: AuthService) {
         this.alertData = {
             type: '',
             message: '',
@@ -39,7 +39,7 @@ export class RegisterComponent {
         if (!this.registerForm.valid) return;
 
         const { username, email, password, confirmPassword, gender, allowNotification } = this.registerForm.value;
-        this.authHanlderService.register(username, email, password, confirmPassword, gender, allowNotification)
+        this.authService.register(username, email, password, confirmPassword, gender, allowNotification)
                                .subscribe(
                                     response => {
                                         this.alertData = {

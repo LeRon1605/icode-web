@@ -77,9 +77,9 @@
             <label class="form-check-label" for="allowNotification">
                 Cho phép gửi thông báo
             </label>
-          </div>
+        </div>
         <div class="mb-2 d-flex flex-column">
-            <a href="" class="text-decoration-none">Quên mật khẩu</a>
+            <a href="" class="text-decoration-none" [routerLink]="['/auth/forget-password']">Quên mật khẩu</a>
             <span>Đã có tài khoản? <a class="text-decoration-none" [routerLink]="['/auth/login']">Đăng nhập ngay</a></span>
         </div>
         <button type="submit" class="btn btn-primary col-12" [disabled]="!registerForm.valid">Đăng kí</button>

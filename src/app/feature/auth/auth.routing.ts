@@ -4,6 +4,7 @@ import { LoginComponent } from "./pages/login/login.component";
 import { RegisterComponent } from "./pages/register/register.component";
 import { AuthComponent } from "./auth.component";
 import { NoAuthGuard } from "src/app/core/guards/no-auth.guard";
+import { ForgetPasswordComponent } from "./pages/forget-password/forget-password.component";
 
 const routes: Routes = [
     {
@@ -18,6 +19,11 @@ const routes: Routes = [
             {
                 path: 'register',
                 component: RegisterComponent,
+                canActivate: [NoAuthGuard]
+            },
+            {
+                path: 'forget-password',
+                component: ForgetPasswordComponent,
                 canActivate: [NoAuthGuard]
             }
         ]

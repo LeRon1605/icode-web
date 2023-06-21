@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { LoginRequestDto, LoginResponseDto, RefreshTokenRequestDto, RefreshTokenResponseDto, RegisterRequestDto, RegisterResponseDto } from "../schema/auth.schema";
+import { ForgetPasswordRequestDto, ForgetPasswordResponseDto, LoginRequestDto, LoginResponseDto, RefreshTokenRequestDto, RefreshTokenResponseDto, RegisterRequestDto, RegisterResponseDto } from "../schema/auth.schema";
 import { BaseApiService } from "./base-api.service";
 
 @Injectable()
@@ -14,5 +14,9 @@ export class AuthApiService extends BaseApiService{
 
     refreshToken(data: RefreshTokenRequestDto) {
         return this.http.post<RefreshTokenResponseDto>(this.API_END_POINTS.REFRESH_TOKEN_REQUEST, data);
+    }
+
+    requestForgetPassword(data: ForgetPasswordRequestDto) {
+        return this.http.post<ForgetPasswordResponseDto>(this.API_END_POINTS.FORGET_PASSWORD_REQUEST, data);
     }
 }

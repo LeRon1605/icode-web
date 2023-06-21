@@ -6,14 +6,16 @@ import { AuthComponent } from "./auth.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { CoreModule } from "src/app/core/core.module";
-import { AuthHandlerService } from "./auth-handler.serivce";
+import { AuthService } from "./auth.serivce";
 import { SharedModule } from "src/app/shared/shared.module";
+import { ForgetPasswordComponent } from "./pages/forget-password/forget-password.component";
 
 @NgModule({
     declarations: [
         AuthComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        ForgetPasswordComponent
     ],
     imports: [
         AuthRoutingModule,
@@ -23,7 +25,7 @@ import { SharedModule } from "src/app/shared/shared.module";
         SharedModule
     ],
     providers: [
-        AuthHandlerService
+        AuthService
     ]
 })
 export class AuthModule {}
