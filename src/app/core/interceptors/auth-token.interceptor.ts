@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 @Injectable()
 export class AuthTokenInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        throw new Error("Method not implemented.");
+        // throw new Error("Method not implemented.");
+        return next.handle(req);
     }
 }

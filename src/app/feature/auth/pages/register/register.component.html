@@ -1,0 +1,16 @@
+<div class="p-3 ms-2">
+    <form>
+        <div class="mb-3">
+            <input type="email" class="form-control" placeholder="Tên đăng nhập hoặc địa chỉ email">
+            <!-- <div class="form-text">We'll never share your email with anyone else.</div> -->
+        </div>
+        <div class="mb-2">
+            <input type="password" class="form-control" placeholder="Mật khẩu">
+        </div>
+        <div class="mb-2 d-flex flex-column">
+            <a href="" class="text-decoration-none">Quên mật khẩu</a>
+            <span>Đã có tài khoản? <a class="text-decoration-none" [routerLink]="['/auth/login']">Đăng nhập ngay</a></span>
+        </div>
+        <button type="submit" class="btn btn-primary col-12">Đăng kí</button>
+    </form>
+</div>

@@ -1,0 +1,10 @@
+.auth-wrapper {
+    height: 100vh;
+    width: 100%;
+}
+
+.auth-icon {
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+}
