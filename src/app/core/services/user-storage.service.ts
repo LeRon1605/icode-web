@@ -4,7 +4,7 @@ import { UserInfo } from "../schema/user.schema";
 export class UserStorageService {
     public currentUser: BehaviorSubject<UserInfo | null> = new BehaviorSubject<UserInfo | null>(null);
 
-    setCurrentUser(user: UserInfo) {
+    setCurrentUser(user: UserInfo | null) {
         this.currentUser.next(user);
     }
 

@@ -9,7 +9,8 @@ export class BaseApiService {
 
     constructor(protected http: HttpClient) {
         this.API_END_POINTS = {
-            LOGIN_REQUEST: this.baseApiUrl + '/auth/login'
+            LOGIN_REQUEST: this.baseApiUrl + '/auth/login',
+            REFRESH_TOKEN_REQUEST: this.baseApiUrl + '/auth/refresh-token'
         };
     }
 }

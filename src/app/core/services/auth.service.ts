@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
 import { AuthApiService } from "src/app/data/services/auth-api.service";
 import { Observable, catchError, map, tap, throwError } from 'rxjs';
-import { LoginRequestDto } from "src/app/data/schema/auth.schema";
+import { LoginRequestDto, RefreshTokenRequestDto } from "src/app/data/schema/auth.schema";
 import { ErrorApiResponse } from "../schema/error.schema";
 import { TokenStorageService } from "./token-storage.service";
 import { UserStorageService } from "./user-storage.service";
+import { TokenCredential } from "../schema/token.schema";
 
 @Injectable()
 export class AuthService {
@@ -23,12 +24,12 @@ export class AuthService {
         return this.authApiService.authenticate(data)
                                 .pipe(
                                     tap(response => {
-                                        this.userStorageService.setCurrentUser(this.tokenStorageService.parseJwtToken(response.access_token));
+                                        this.userStorageService.setCurrentUser(this.tokenStorageService.getUserInfoFromToken(response.access_token));
                                         this.tokenStorageService.setAccessToken(response.access_token);
                                         this.tokenStorageService.setRefreshToken(response.refresh_token);
                                     }),
                                     map(response => {
-                                        return this.tokenStorageService.parseJwtToken(response.access_token);
+                                        return this.tokenStorageService.getUserInfoFromToken(response.access_token);
                                     }),
                                     catchError<any, Observable<ErrorApiResponse>>((errorResponse): Observable<ErrorApiResponse> => {
                                         return throwError({
@@ -39,7 +40,35 @@ export class AuthService {
                                 );
     }
 
+    refreshToken() {
+        if (!this.tokenStorageService.isValidAccessToken() && this.tokenStorageService.getAccessToken() != null && this.tokenStorageService.getRefreshToken() != null) {
+            const data: RefreshTokenRequestDto = {
+                accessToken: <string>this.tokenStorageService.getAccessToken(),
+                refreshToken: <string>this.tokenStorageService.getRefreshToken()
+            }
+            this.authApiService.refreshToken(data)
+                                .subscribe(
+                                    response => {
+                                        this.userStorageService.setCurrentUser(this.tokenStorageService.getUserInfoFromToken(response.access_token));
+                                        this.tokenStorageService.setAccessToken(response.access_token);
+                                        this.tokenStorageService.setRefreshToken(response.refresh_token);
+                                    },
+                                    error => {
+                                        this.userStorageService.setCurrentUser(null);
+                                        this.tokenStorageService.clear();
+                                    }
+                                );
+        }
+    }
+
     autoLogin() {
-        
+        if (this.tokenStorageService.isValidAccessToken()) {
+            const token = this.tokenStorageService.getToken();
+            this.userStorageService.setCurrentUser(this.tokenStorageService.getUserInfoFromToken(<string>token.accessToken));
+        } else {
+            this.userStorageService.setCurrentUser(null);
+            this.tokenStorageService.clear();
+            this.refreshToken();
+        }
     }
 }

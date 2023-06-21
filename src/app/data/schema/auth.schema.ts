@@ -5,5 +5,15 @@ export interface LoginRequestDto {
 
 export interface LoginResponseDto {
     access_token: string;
-    refresh_token: string
+    refresh_token: string;
+}
+
+export interface RefreshTokenRequestDto {
+    accessToken: string;
+    refreshToken: string;
+}
+
+export interface RefreshTokenResponseDto {
+    access_token: string;
+    refresh_token: string;
 }
