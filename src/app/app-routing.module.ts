@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PureLayoutComponent } from './layout/pure-layout/pure-layout.component';
+import { BasicLayoutComponent } from './layout/basic-layout/basic-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: PureLayoutComponent,
+    component: BasicLayoutComponent,
     loadChildren: () => import('./feature/home/home.module').then(x => x.HomeModule),
     pathMatch: 'full'
   },

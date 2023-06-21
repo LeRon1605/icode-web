@@ -17,3 +17,16 @@ export interface RefreshTokenResponseDto {
     access_token: string;
     refresh_token: string;
 }
+
+export interface RegisterRequestDto {
+    username: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+    gender: boolean;
+    allowNotification: boolean;
+}
+
+export interface RegisterResponseDto {
+    
+}

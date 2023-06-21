@@ -4,11 +4,23 @@
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="mb-3">
-            <input type="email" class="form-control" placeholder="Tên đăng nhập hoặc địa chỉ email" formControlName="usernameOrEmail">
+            <input 
+                type="email" 
+                class="form-control" 
+                [class]="{'is-invalid': loginForm.controls['usernameOrEmail'].hasError('required') && loginForm.controls['usernameOrEmail'].touched}" 
+                placeholder="Tên đăng nhập hoặc địa chỉ email" 
+                formControlName="usernameOrEmail"
+            >
             <div class="form-text text-danger" *ngIf="loginForm.controls['usernameOrEmail'].hasError('required') && loginForm.controls['usernameOrEmail'].touched">Tên đăng nhập hoặc địa chỉ email không được để trống.</div>
         </div>
         <div class="mb-2">
-            <input type="password" class="form-control" placeholder="Mật khẩu" formControlName="password">
+            <input 
+                type="password" 
+                class="form-control" 
+                [class]="{'is-invalid': loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched}"
+                placeholder="Mật khẩu" 
+                formControlName="password"
+            >
             <div class="form-text text-danger" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Mật khẩu không được để trống.</div>
         </div>
         <div class="mb-2 d-flex flex-column">

@@ -4,7 +4,7 @@ import { UserInfo } from "../schema/user.schema";
 import { TokenCredential } from "../schema/token.schema";
 import { CLAIMS } from "../constants/claim.constant";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TokenStorageService {
     setAccessToken(token: string) {
         localStorage.setItem(TOKEN_STORAGE.ACCESS_TOKEN, token);
