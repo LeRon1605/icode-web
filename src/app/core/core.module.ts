@@ -2,13 +2,15 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { AuthGuard } from "./guards/auth.guard";
 import { AuthTokenInterceptor } from "./interceptors/auth-token.interceptor";
-import { AuthService } from "./services/auth.service";
+import { DataModule } from "../data/data.module";
 
 @NgModule({
-    imports: [HttpClientModule],
+    imports: [
+        HttpClientModule,
+        DataModule
+    ],
     providers: [
         AuthGuard,
-        AuthService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthTokenInterceptor,
