@@ -1,0 +1,33 @@
+<table class="table caption-top table-striped table-responsive table-bordered rounded" *ngIf="options != null">
+    <caption *ngIf="options.title != null">
+        <div class="d-flex justify-content-between align-items-end">
+            <div class="d-flex align-items-center">
+                <h3>
+                    {{ options.title }}
+                </h3>
+                <span class="ms-2">    
+                    <ng-content select="[captionArea]"></ng-content>
+                </span>
+            </div>
+            <div class="d-flex align-items-center justify-content-end col-8">   
+                <ng-content select="[filterArea]"></ng-content>
+            </div>
+        </div>
+    </caption>
+    <thead>
+        <tr>
+            <th scope="col" *ngIf="options.order">#</th>
+            <th scope="col" *ngFor="let col of options.columns">{{ col.name }}</th>
+            <th scope="col" *ngIf="options.actionOptions != null">Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of options.data; let order = index;">
+            <th scope="row" *ngIf="options.order">{{ order + 1 }}</th>
+            <td *ngFor="let col of options.columns" [innerHTML]="col.generate != null ? col.generate(row) : row[col.field]"></td>
+            <td *ngIf="options.actionOptions != null">
+                <a class="text-decoration-none me-2 cursor-pointer" *ngFor="let actionOption of options.actionOptions" (click)="actionOption.onClickListener(row)">{{ actionOption.title }}</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

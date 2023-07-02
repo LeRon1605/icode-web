@@ -7,18 +7,22 @@ import { AuthModule } from './feature/auth/auth.module';
 import { PureLayoutComponent } from './layout/pure-layout/pure-layout.component';
 import { SharedModule } from './shared/shared.module';
 import { BasicLayoutComponent } from './layout/basic-layout/basic-layout.component';
+import { SidebarLayoutComponent } from './layout/sidebar-layout/sidebar-layout.component';
+import { ProblemModule } from './feature/problem/problem.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     PureLayoutComponent,
-    BasicLayoutComponent
+    BasicLayoutComponent,
+    SidebarLayoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    SharedModule
+    SharedModule,
+    ProblemModule
   ],
   providers: [],
   bootstrap: [AppComponent]

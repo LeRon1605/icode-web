@@ -1,0 +1,29 @@
+<app-data-table [options]="dataTableOptions">
+    <ng-container captionArea>
+        <a class="text-decoration-none cursor-pointer">Thêm bài tập</a>
+    </ng-container>
+    <ng-container filterArea>
+        <form [formGroup]="filterForm" class="d-flex" (ngSubmit)="filterProblem()">
+            <select class="form-select me-2" aria-label="Default select example" style="width: 20%" name="tag" formControlName="tag" (change)="loadProblems()">
+                <option value="" selected>Thể loại</option>
+                <option *ngFor="let tag of tags" [value]="tag.id">{{ tag.name }}</option>
+            </select>
+            <select class="form-select me-2" aria-label="Default select example" style="width: 20%" name="level" formControlName="level" (change)="loadProblems()"> 
+                <option value="" selected>Độ khó</option>
+                <option *ngFor="let level of levelOptions" [value]="level.value">{{ level.title }}</option>
+               
+            </select>
+            <select class="form-select me-2" aria-label="Default select example" style="width: 20%" name="sort" formControlName="sort" (change)="loadProblems()">
+                <option value="" selected>Sắp xếp</option>
+                <option *ngFor="let sort of sortOptions" [value]="sort.value">{{ sort.title }}</option>
+            </select>
+            <div class="d-flex align-items-center">
+                <input type="text" class="form-control me-2" placeholder="Nhập từ khóa tìm kiếm" formControlName="name">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </form>
+    </ng-container>
+</app-data-table>
+<div class="d-flex justify-content-center">
+    <app-pagination (currentPageChanged)="onPageChanged($event)" [currentPage]="1" [totalPage]="totalProblemPages"></app-pagination>
+</div>

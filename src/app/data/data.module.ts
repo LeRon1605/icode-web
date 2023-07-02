@@ -5,6 +5,8 @@ import { BaseApiService } from "./services/base-api.service";
 import { AuthGuard } from "../core/guards/auth.guard";
 import { NoAuthGuard } from "../core/guards/no-auth.guard";
 import { RoleAuthGuard } from "../core/guards/role-auth.guard";
+import { ProblemApiService } from "./services/problem-api.service";
+import { TagApiService } from "./services/tag-api.service";
 
 @NgModule({
     imports: [
@@ -13,6 +15,8 @@ import { RoleAuthGuard } from "../core/guards/role-auth.guard";
     providers: [
         BaseApiService,
         AuthApiService,
+        ProblemApiService,
+        TagApiService,
         AuthGuard,
         NoAuthGuard,
         RoleAuthGuard
