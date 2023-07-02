@@ -12,7 +12,9 @@ export class BaseApiService {
             LOGIN_REQUEST: this.baseApiUrl + '/auth/login',
             REGISTER_REQUEST: this.baseApiUrl + '/auth/register',
             FORGET_PASSWORD_REQUEST: this.baseApiUrl + '/auth/forget-password',
-            REFRESH_TOKEN_REQUEST: this.baseApiUrl + '/auth/refresh-token'
+            REFRESH_TOKEN_REQUEST: this.baseApiUrl + '/auth/refresh-token',
+            PROBLEM_REQUEST: this.baseApiUrl + '/problems',
+            TAG_REQUEST: this.baseApiUrl + '/tags'
         };
     }
 }

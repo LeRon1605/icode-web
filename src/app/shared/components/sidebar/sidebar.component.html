@@ -1,0 +1,83 @@
+<header>
+    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse">
+        <div class="position-sticky">
+            <div class="list-group list-group-flush mx-3 mt-4">
+                <h1 class="text-center text-white">ICODE</h1>
+                <a 
+                    class="list-group-item list-group-item-action py-2 ripple mb-1 sidebar-item" 
+                    (click)="onElementClick(SIDEBAR_EL.DASHBOARD)"
+                    [class]="{ active: currentState == SIDEBAR_EL.DASHBOARD }"
+                >
+                    <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
+                </a>
+                <a 
+                    class="list-group-item list-group-item-action py-2 ripple active mb-1 sidebar-item" 
+                    (click)="onElementClick(SIDEBAR_EL.EXERCISE)" data-bs-toggle="collapse" data-bs-target="#exercise"
+                    [class]="{ active: currentState == SIDEBAR_EL.EXERCISE }"
+                    [routerLink]="['/admin/problem']"
+                >
+                    <i class="fas fa-chart-area fa-fw me-3"></i><span>Quản lí bài tập</span>
+                </a>
+                <div class="collapse" id="exercise">
+                    <a 
+                        class="list-group-item list-group-item-action py-2 ripple mb-1 sidebar-item sidebar-item-child" 
+                        (click)="onElementClick(SIDEBAR_EL.EXERCISE_LIST)"
+                        [class]="{ active: currentState == SIDEBAR_EL.EXERCISE_LIST }"
+                        [routerLink]="['/admin/problem']"
+                    >
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Danh sách bài tập</span>
+                    </a>
+                    <a 
+                        class="list-group-item list-group-item-action py-2 ripple mb-1 sidebar-item sidebar-item-child" 
+                        (click)="onElementClick(SIDEBAR_EL.EXERCISE_CREATE)"
+                        [class]="{ active: currentState == SIDEBAR_EL.EXERCISE_CREATE }"
+                    >
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Thêm bài tập</span>
+                    </a>
+                </div>
+                <a 
+                    class="list-group-item list-group-item-action py-2 ripple mb-1 sidebar-item" 
+                    (click)="onElementClick(SIDEBAR_EL.SUBMISSION)" data-bs-toggle="collapse" data-bs-target="#submission"
+                    [class]="{ active: currentState == SIDEBAR_EL.SUBMISSION }"
+                >
+                    <i class="fas fa-chart-area fa-fw me-3"></i><span>Quản lí bài nộp</span>
+                </a>
+                <div class="collapse" id="submission">
+                    <a 
+                        class="list-group-item list-group-item-action py-2 ripple mb-1 sidebar-item sidebar-item-child" 
+                        (click)="onElementClick(SIDEBAR_EL.SUBMISSION_LIST)"
+                        [class]="{ active: currentState == SIDEBAR_EL.SUBMISSION_LIST }"
+                    >
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Danh sách bài nộp</span>
+                    </a>
+                </div>
+                <a 
+                    class="list-group-item list-group-item-action py-2 ripple mb-1 sidebar-item" 
+                    (click)="onElementClick(SIDEBAR_EL.ACCOUNT)" data-bs-toggle="collapse" data-bs-target="#account"
+                    [class]="{ active: currentState == SIDEBAR_EL.ACCOUNT }"
+                >
+                    <i class="fas fa-chart-area fa-fw me-3"></i><span>Tài khoản</span>
+                </a>
+                <div class="collapse" id="account">
+                    <a 
+                        class="list-group-item list-group-item-action py-2 ripple mb-1 sidebar-item sidebar-item-child" 
+                        (click)="onElementClick(SIDEBAR_EL.ACCOUNT_INFO)"
+                        [class]="{ active: currentState == SIDEBAR_EL.ACCOUNT_INFO }"
+                    >
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Thông tin cá nhân</span>
+                    </a>
+                    <a 
+                        class="list-group-item list-group-item-action py-2 ripple mb-1 sidebar-item sidebar-item-child" 
+                        (click)="onElementClick(SIDEBAR_EL.CHANGE_PASSWORD)"
+                        [class]="{ active: currentState == SIDEBAR_EL.CHANGE_PASSWORD }"
+                    >
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Thay đổi mật khẩu</span>
+                    </a>
+                    <a class="list-group-item list-group-item-action py-2 ripple mb-1 sidebar-item sidebar-item-child" (click)="onElementClick(SIDEBAR_EL.LOGOUT)">
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Đăng xuất</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
