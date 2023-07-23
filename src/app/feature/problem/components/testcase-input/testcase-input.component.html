@@ -1,0 +1,56 @@
+<form [formGroup]="testcaseFormGroup">
+    <div class="border rounded p-3 mb-3 testcaseBlock">
+        <div class="d-flex mb-3 justify-content-between">
+            <div class="col-6">
+                <label class="form-label">Input</label>
+                <textarea 
+                    class="form-control testcase-input" 
+                    placeholder="Nhập đầu vào" 
+                    rows="1"
+                    formControlName="input"
+                    [class]="{'is-invalid': testcaseFormGroup.controls['input'].invalid && testcaseFormGroup.controls['input'].touched}"
+                ></textarea>
+                <span *ngIf="testcaseFormGroup.controls['input'].hasError('required') && testcaseFormGroup.controls['input'].touched" class="form-text text-danger">Không được để trống.</span>
+            </div>
+            <div class="col-5">
+                <label class="form-label">Time Limit</label>
+                <input 
+                    class="form-control testcase-timelimit"
+                    type="number" 
+                    placeholder="Nhập giới hạn thời gian"
+                    formControlName="timeLimit"
+                    [class]="{'is-invalid': testcaseFormGroup.controls['timeLimit'].invalid && testcaseFormGroup.controls['timeLimit'].touched}"
+                />
+                <span *ngIf="testcaseFormGroup.controls['timeLimit'].hasError('required') && testcaseFormGroup.controls['timeLimit'].touched" class="form-text text-danger">Không được để trống.</span>
+                <span *ngIf="testcaseFormGroup.controls['timeLimit'].hasError('min') && testcaseFormGroup.controls['timeLimit'].touched" class="form-text text-danger">Không được bé hơn 0.</span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div class="col-6">
+                <label class="form-label">Output</label>
+                <textarea 
+                    class="form-control testcase-output" 
+                    placeholder="Nhập đầu ra" 
+                    rows="1"
+                    formControlName="output"
+                    [class]="{'is-invalid': testcaseFormGroup.controls['output'].invalid && testcaseFormGroup.controls['output'].touched}"
+                ></textarea>
+                <span *ngIf="testcaseFormGroup.controls['output'].hasError('required') && testcaseFormGroup.controls['output'].touched" class="form-text text-danger">Không được để trống.</span>
+            </div>
+            <div class="col-5">
+                <label class="form-label">Memory Limit</label>
+                <input 
+                    type="number"
+                    class="form-control testcase-memorylimit" 
+                    placeholder="Nhập giới hạn bộ nhớ" data-val="true"
+                    formControlName="memoryLimit"
+                    [class]="{'is-invalid': testcaseFormGroup.controls['memoryLimit'].invalid && testcaseFormGroup.controls['memoryLimit'].touched}"
+                />
+                <span *ngIf="testcaseFormGroup.controls['memoryLimit'].hasError('required') && testcaseFormGroup.controls['memoryLimit'].touched" class="form-text text-danger">Không được để trống.</span>
+                <span *ngIf="testcaseFormGroup.controls['memoryLimit'].hasError('min') && testcaseFormGroup.controls['memoryLimit'].touched" class="form-text text-danger">Không được bé hơn 0.</span>
+            </div>
+        </div>
+        <button class="btn btn-danger btnDelete" onClick="deleteTestcase(this)" data-index="0"></button>
+    </div>
+</form>
+<button class="btn btn-primary col-12 mb-3" id="btn-add-testcase" type="button">Thêm testcase</button>

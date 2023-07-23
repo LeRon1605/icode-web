@@ -1,0 +1,29 @@
+.btnDelete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+    margin: 0;
+    padding: 0;
+    display: none;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.btnDelete::before {
+    content: "x";
+    transform: translate(3%, -12%)
+}
+
+.testcaseBlock {
+    position: relative;
+}
+
+.testcaseBlock:hover .btnDelete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
