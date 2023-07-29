@@ -8,11 +8,16 @@ import { ProblemManagerService } from "./services/problem-manager.service";
 import { CommonModule, DatePipe } from "@angular/common";
 import { TagModule } from "../tag/tag.module";
 import { ReactiveFormsModule } from "@angular/forms";
+import { CreateProblemComponent } from "./pages/create-problem/create-problem.component";
+import { TestcaseInputComponent } from "./components/testcase-input/testcase-input.component";
+import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 
 @NgModule({
     declarations: [
         ProblemListTableComponent,
-        ProblemManagerComponent
+        ProblemManagerComponent,
+        CreateProblemComponent,
+        TestcaseInputComponent
     ],
     imports: [
         CoreModule,
@@ -20,7 +25,8 @@ import { ReactiveFormsModule } from "@angular/forms";
         ReactiveFormsModule,
         ProblemRoutingModule,
         SharedModule,
-        TagModule
+        TagModule,
+        CKEditorModule
     ],
     providers: [
         ProblemManagerService,

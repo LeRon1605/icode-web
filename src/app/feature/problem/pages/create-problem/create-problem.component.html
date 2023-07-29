@@ -1,0 +1,74 @@
+<form class="container" [formGroup]="createProblemForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-8">
+            <div class="mb-3">
+                <label class="form-label">Tên bài tập</label>
+                <input 
+                    class="form-control" 
+                    placeholder="Nhập tên bài tập" 
+                    formControlName="name"
+                    [class]="{'is-invalid': createProblemForm.controls['name'].invalid && createProblemForm.controls['name'].touched}"
+                >
+                <span class="form-text text-danger" *ngIf="createProblemForm.controls['name'].hasError('required') && createProblemForm.controls['name'].touched">Tên bài tập không được để trống.</span>
+                <span class="form-text text-danger" *ngIf="createProblemForm.controls['name'].hasError('minlength') && createProblemForm.controls['name'].touched">Tên bài tập có độ dài tối thiểu 10 kí tự.</span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Mô tả</label>
+                <ckeditor 
+                    [editor]="editor" 
+                    formControlName="description"
+                    [class]="{'is-invalid': createProblemForm.controls['description'].invalid && createProblemForm.controls['description'].touched}"
+                ></ckeditor>
+                <span class="form-text text-danger" *ngIf="createProblemForm.controls['description'].hasError('required') && createProblemForm.controls['description'].touched">Mô tả bài tập không được để trống.</span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label">Độ khó</label>
+                <select 
+                    class="form-select" 
+                    formControlName="level"
+                    [class]="{'is-invalid': createProblemForm.controls['level'].invalid && createProblemForm.controls['level'].touched}"
+                >
+                    <option value="0">Dễ</option>
+                    <option value="1">Trung bình</option>
+                    <option value="2">Khó</option>
+                </select>
+                <span *ngIf="createProblemForm.controls['level'].hasError('required') && createProblemForm.controls['level'].touched" class="form-text text-danger">Độ khó của bài tập không được để trống.</span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Điểm</label>
+                <input 
+                    class="form-control" 
+                    type="number"
+                    placeholder="Nhập điểm bài tập"
+                    formControlName="score"
+                    [class]="{'is-invalid': createProblemForm.controls['score'].invalid && createProblemForm.controls['score'].touched}"
+                >
+                <span *ngIf="createProblemForm.controls['score'].hasError('required') && createProblemForm.controls['score'].touched" class="form-text text-danger">Điểm bài tập không được để trống.</span>
+                <span *ngIf="createProblemForm.controls['score'].hasError('min') && createProblemForm.controls['score'].touched" class="form-text text-danger">Điểm bài tập không được âm.</span>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Thể loại</label>
+                <select 
+                    class="form-select" 
+                    formControlName="tag"
+                    [class]="{'is-invalid': createProblemForm.controls['tag'].invalid && createProblemForm.controls['tag'].touched}"
+                >
+                    <option value="" selected>Vui lòng chọn thể loại</option>
+                    <option *ngFor="let tag of tags" [value]="tag.id">{{ tag.name }}</option>
+                </select>
+                <span *ngIf="createProblemForm.controls['tag'].hasError('required') && createProblemForm.controls['tag'].touched" class="form-text text-danger">Vui lòng chọn thể loại.</span>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Testcases</label>
+                <div *ngFor="let control of getTestcasesForm().controls; let i = index">
+                    <app-testcase-input [testcaseFormGroup]="getTestcasesFormGroupAt(i)" (remove)="onDeleteTestcase($event)"></app-testcase-input>
+                </div>
+                <app-alert *ngIf="alertData.isNotification" [type]="alertData.type" [message]="alertData.message"></app-alert>
+                <button class="btn btn-primary col-12 mb-3" (click)="onAddTestcase()" type="button">Thêm testcase</button>
+                <button class="btn btn-success col-12" type="submit" id="btn-submit" [disabled]="!createProblemForm.valid">Thêm bài tập</button>
+            </div>
+        </div>
+    </div>
+</form>

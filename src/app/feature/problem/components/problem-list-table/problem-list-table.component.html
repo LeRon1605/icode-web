@@ -1,6 +1,6 @@
 <app-data-table [options]="dataTableOptions">
     <ng-container captionArea>
-        <a class="text-decoration-none cursor-pointer">Thêm bài tập</a>
+        <a class="text-decoration-none cursor-pointer" [routerLink]="['/admin/problem/insert']">Thêm bài tập</a>
     </ng-container>
     <ng-container filterArea>
         <form [formGroup]="filterForm" class="d-flex" (ngSubmit)="filterProblem()">

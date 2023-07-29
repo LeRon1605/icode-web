@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BaseApiService } from "./base-api.service";
-import { ProblemDto, ProblemPagingRequestDto, ProblemPagingResponseDto } from "../schema/problem.schema";
+import { ProblemCreateDto, ProblemDto, ProblemPagingRequestDto, ProblemPagingResponseDto } from "../schema/problem.schema";
 import { HttpParams } from "@angular/common/http";
 
 @Injectable()
@@ -13,6 +13,10 @@ export class ProblemApiService extends BaseApiService {
         return this.http.get<ProblemPagingResponseDto>(this.API_END_POINTS.PROBLEM_REQUEST, {
             params: this.getPagingParams(problemPagingRequestDto)
         });
+    }
+
+    insert(problemCreateDto: ProblemCreateDto) {
+        return this.http.post<ProblemCreateDto>(this.API_END_POINTS.PROBLEM_REQUEST, problemCreateDto);
     }
 
     private getPagingParams(problemPagingRequestDto: ProblemPagingRequestDto) : HttpParams {

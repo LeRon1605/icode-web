@@ -58,8 +58,7 @@ export class TokenStorageService {
         if (token.accessToken == null) return false;
 
         const claims = this.parseJwtToken(<string>token.accessToken);
-        const expireTime = new Date(claims[CLAIMS.EXPIRE]);
 
-        return expireTime < new Date();
+        return claims[CLAIMS.EXPIRE] * 1000 > Date.now();
     }
 }
