@@ -1,4 +1,4 @@
-<form class="container" [formGroup]="createProblemForm">
+<form class="container" [formGroup]="createProblemForm" (ngSubmit)="onSubmit()">
     <div class="row">
         <div class="col-8">
             <div class="mb-3">
@@ -14,8 +14,12 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Mô tả</label>
-                <ckeditor [editor]="editor"></ckeditor>
-                <span class="form-text text-danger d-none" id="editor-validate">Mô tả bài tập có độ dài ít nhất 10 kí tự</span>
+                <ckeditor 
+                    [editor]="editor" 
+                    formControlName="description"
+                    [class]="{'is-invalid': createProblemForm.controls['description'].invalid && createProblemForm.controls['description'].touched}"
+                ></ckeditor>
+                <span class="form-text text-danger" *ngIf="createProblemForm.controls['description'].hasError('required') && createProblemForm.controls['description'].touched">Mô tả bài tập không được để trống.</span>
             </div>
         </div>
         <div class="col-4">
@@ -59,9 +63,11 @@
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Testcases</label>
                 <div *ngFor="let control of getTestcasesForm().controls; let i = index">
-                    <app-testcase-input [testcaseFormGroup]="getTestcasesFormGroupAt(i)"></app-testcase-input>
+                    <app-testcase-input [testcaseFormGroup]="getTestcasesFormGroupAt(i)" (remove)="onDeleteTestcase($event)"></app-testcase-input>
                 </div>
-                <button class="btn btn-success col-12" type="submit" id="btn-submit">Thêm bài tập</button>
+                <app-alert *ngIf="alertData.isNotification" [type]="alertData.type" [message]="alertData.message"></app-alert>
+                <button class="btn btn-primary col-12 mb-3" (click)="onAddTestcase()" type="button">Thêm testcase</button>
+                <button class="btn btn-success col-12" type="submit" id="btn-submit" [disabled]="!createProblemForm.valid">Thêm bài tập</button>
             </div>
         </div>
     </div>

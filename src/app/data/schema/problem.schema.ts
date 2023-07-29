@@ -15,6 +15,20 @@ export interface ProblemDto {
     updatedAt: Date;
 }
 
+export interface ProblemCreateDto {
+    name: string;
+    description: string;
+    level: string;
+    score: number;
+    tags: string[];
+    testcases: [{
+        input: string;
+        timeLimit: number;
+        memoryLimit: number;
+        output: string;
+    }];
+}
+
 export interface ProblemPagingRequestDto {
     page: number;
     pageSize: number;

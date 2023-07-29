@@ -50,7 +50,6 @@
                 <span *ngIf="testcaseFormGroup.controls['memoryLimit'].hasError('min') && testcaseFormGroup.controls['memoryLimit'].touched" class="form-text text-danger">Không được bé hơn 0.</span>
             </div>
         </div>
-        <button class="btn btn-danger btnDelete" onClick="deleteTestcase(this)" data-index="0"></button>
+        <button class="btn btn-danger btnDelete" (click)="onDeleteBtnClicked()" type="button"></button>
     </div>
 </form>
-<button class="btn btn-primary col-12 mb-3" id="btn-add-testcase" type="button">Thêm testcase</button>
